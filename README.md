@@ -10,7 +10,9 @@ Varpet Rob — одностраничный лендинг (HTML / CSS / JS, б�
    telegram — username без @
    Пока поля пустые, заявки уходят в Instagram Direct (@varpet_rob), а пустые строки контактов скрыты.
 
-2. Фото: иллюстрации в assets/images/*.svg — замените на реальные фото изделий
+2. Фото работ: кладите в assets/images/works/ и перечисляйте в массиве WORKS (main.js).
+   Отзывы из сторис: assets/images/reviews/ + массив REVIEWS — блок «Отзывы» появится сам.
+   Старое: иллюстрации в assets/images/*.svg — замените на реальные фото изделий
    (те же имена или поправьте src в index.html). Рекомендуется WebP/JPG ~1200px.
 
 3. Аналитика: подключайте счётчики только внутри функции loadAnalytics() в main.js —

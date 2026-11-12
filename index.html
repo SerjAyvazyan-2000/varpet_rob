@@ -30,9 +30,10 @@
       <span class="logo__text">Varpet Rob</span>
     </a>
     <nav class="nav" id="nav" aria-label="Основное меню">
-      <a href="#works">Изделия</a>
+      <a href="#works">Работы</a>
       <a href="#constructor">Собрать ремень</a>
       <a href="#process">Как я шью</a>
+      <a href="#reviews" data-reviews-link hidden>Отзывы</a>
       <a href="#faq">Уход и сроки</a>
       <a href="#order">Контакты</a>
     </nav>
@@ -56,7 +57,7 @@
           <p class="hero__lead">Ремни, кошельки и аксессуары из натуральной кожи. Режу, шью седельным швом и полирую торец сам — от первого прокола до последнего узла.</p>
           <div class="hero__actions">
             <a class="btn btn--solid" href="#constructor"><span>Собрать свой ремень</span></a>
-            <a class="btn btn--ghost" href="#works"><span>Смотреть изделия</span></a>
+            <a class="btn btn--ghost" href="#works"><span>Смотреть работы</span></a>
           </div>
         </div>
         <div class="hero__stage" id="heroStage" aria-hidden="true">
@@ -85,61 +86,23 @@
       </div>
     </section>
 
-    <!-- WORKS: горизонтальная лента -->
+    <!-- WORKS: слайдер работ мастера (наполняется из WORKS в assets/js/main.js) -->
     <section class="works" id="works" aria-labelledby="worksTitle">
-      <div class="works__pin">
-        <div class="works__head container">
-          <h2 id="worksTitle" class="h2">Что я делаю</h2>
-          <p class="works__hint">Листайте — каждую вещь можно заказать в своём цвете и размере.</p>
+      <div class="container works__head">
+        <div>
+          <h2 id="worksTitle" class="h2">Мои работы</h2>
+          <p class="works__hint">Всё, что на фото, сделано мной вручную. Любую вещь можно заказать в своём цвете и размере.</p>
         </div>
-        <div class="works__viewport">
-          <ul class="works__track" id="worksTrack">
-            <li class="tag" style="--tag:#c99a62">
-              <div class="tag__hole" aria-hidden="true"></div>
-              <img src="assets/images/belt.svg" alt="Кожаный ремень с металлической пряжкой" width="400" height="400" loading="lazy">
-              <h3>Ремни</h3>
-              <p>Классические и джинсовые, 30–40 мм. Под ваш обхват, с запасом отверстий.</p>
-              <a class="tag__link" href="#constructor">Собрать в конструкторе</a>
-            </li>
-            <li class="tag" style="--tag:#a8463c">
-              <div class="tag__hole" aria-hidden="true"></div>
-              <img src="assets/images/wallet.svg" alt="Кошелёк бифолд из кожи бордового цвета" width="400" height="400" loading="lazy">
-              <h3>Кошельки</h3>
-              <p>Бифолд и лонг-уоллет: отделения для купюр, карт и монет.</p>
-              <a class="tag__link" href="#order" data-product="Кошелёк">Узнать цену</a>
-            </li>
-            <li class="tag" style="--tag:#d9b98f">
-              <div class="tag__hole" aria-hidden="true"></div>
-              <img src="assets/images/cardholder.svg" alt="Картхолдер из светлой кожи" width="400" height="400" loading="lazy">
-              <h3>Картхолдеры</h3>
-              <p>Тонкие, на 4–8 карт. Помещаются в передний карман джинсов.</p>
-              <a class="tag__link" href="#order" data-product="Картхолдер">Узнать цену</a>
-            </li>
-            <li class="tag" style="--tag:#8b6a52">
-              <div class="tag__hole" aria-hidden="true"></div>
-              <img src="assets/images/keyholder.svg" alt="Кожаный брелок для ключей с кольцом" width="400" height="400" loading="lazy">
-              <h3>Брелоки и ключницы</h3>
-              <p>Небольшой подарок, который не потеряется. С тиснением имени.</p>
-              <a class="tag__link" href="#order" data-product="Брелок">Узнать цену</a>
-            </li>
-            <li class="tag" style="--tag:#5f7d69">
-              <div class="tag__hole" aria-hidden="true"></div>
-              <img src="assets/images/strap.svg" alt="Кожаный ремешок для часов" width="400" height="400" loading="lazy">
-              <h3>Ремешки для часов</h3>
-              <p>Под ширину ваших ушек, с контрастной или тон-в-тон нитью.</p>
-              <a class="tag__link" href="#order" data-product="Ремешок для часов">Узнать цену</a>
-            </li>
-            <li class="tag" style="--tag:#b47a43">
-              <div class="tag__hole" aria-hidden="true"></div>
-              <img src="assets/images/bag.svg" alt="Кожаная сумка с клапаном" width="400" height="400" loading="lazy">
-              <h3>Сумки и чехлы</h3>
-              <p>Кросс-боди, чехлы для телефона и документов — по вашему эскизу.</p>
-              <a class="tag__link" href="#order" data-product="Сумка / чехол">Обсудить заказ</a>
-            </li>
-          </ul>
+        <div class="slider__nav">
+          <button class="slider__btn" type="button" data-dir="-1" aria-label="Предыдущая работа"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <span class="slider__count" aria-live="polite"><b>1</b> / <i>1</i></span>
+          <button class="slider__btn" type="button" data-dir="1" aria-label="Следующая работа"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
-        <div class="works__progress" aria-hidden="true"><span id="worksBar"></span></div>
       </div>
+      <div class="slider" id="worksSlider" tabindex="0" aria-roledescription="слайдер" aria-label="Работы мастера">
+        <ul class="slider__track" id="worksTrack"></ul>
+      </div>
+      <div class="container"><div class="slider__progress" aria-hidden="true"><span></span></div></div>
     </section>
 
     <!-- CONSTRUCTOR -->
@@ -281,6 +244,25 @@
       </blockquote>
     </section>
 
+    <!-- REVIEWS: отзывы клиентов из сторис (наполняется из REVIEWS в assets/js/main.js) -->
+    <section class="reviews" id="reviews" aria-labelledby="reviewsTitle" hidden>
+      <div class="container works__head">
+        <div>
+          <h2 id="reviewsTitle" class="h2">Отзывы клиентов</h2>
+          <p class="works__hint">Скриншоты сообщений, которые присылают покупатели. Больше — в сторис @varpet_rob.</p>
+        </div>
+        <div class="slider__nav">
+          <button class="slider__btn" type="button" data-dir="-1" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <span class="slider__count" aria-live="polite"><b>1</b> / <i>1</i></span>
+          <button class="slider__btn" type="button" data-dir="1" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="slider slider--stories" id="reviewsSlider" tabindex="0" aria-roledescription="слайдер" aria-label="Отзывы клиентов">
+        <ul class="slider__track" id="reviewsTrack"></ul>
+      </div>
+      <div class="container"><div class="slider__progress" aria-hidden="true"><span></span></div></div>
+    </section>
+
     <!-- FAQ -->
     <section class="faq" id="faq" aria-labelledby="faqTitle">
       <div class="container faq__grid">
@@ -406,6 +388,13 @@
       <p>Обработка ведётся с вашего согласия в соответствии с Законом Республики Армения «О защите персональных данных», а для посетителей из других стран — с учётом применимого законодательства (в том числе Федерального закона РФ № 152-ФЗ и GDPR).</p>
       <button class="btn btn--solid" type="button" data-close><span>Понятно</span></button>
     </div>
+  </dialog>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Просмотр фото">
+    <button class="lightbox__close" type="button" data-close aria-label="Закрыть">×</button>
+    <button class="lightbox__arrow lightbox__arrow--prev" type="button" data-dir="-1" aria-label="Предыдущее фото"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <figure><img alt=""><figcaption></figcaption></figure>
+    <button class="lightbox__arrow lightbox__arrow--next" type="button" data-dir="1" aria-label="Следующее фото"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

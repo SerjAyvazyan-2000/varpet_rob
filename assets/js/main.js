@@ -10,6 +10,25 @@
     telegram: '',   // username без @, например: 'varpet_rob'
   };
 
+  /* ====== РАБОТЫ МАСТЕРА ======
+     Фото кладите в assets/images/works/ и перечисляйте здесь.
+     product — что подставится в форму заказа при клике «Хочу такой». */
+  const WORKS = [
+    // { src: 'assets/images/works/01.jpg', title: 'Ремень, коньяк', product: 'Ремень' },
+    { src: 'assets/images/belt.svg', title: 'Ремень', product: 'Ремень' },
+    { src: 'assets/images/wallet.svg', title: 'Кошелёк', product: 'Кошелёк' },
+    { src: 'assets/images/cardholder.svg', title: 'Картхолдер', product: 'Картхолдер' },
+    { src: 'assets/images/keyholder.svg', title: 'Брелок', product: 'Брелок' },
+    { src: 'assets/images/strap.svg', title: 'Ремешок для часов', product: 'Ремешок для часов' },
+    { src: 'assets/images/bag.svg', title: 'Сумка', product: 'Сумка / чехол' },
+  ];
+
+  /* ====== ОТЗЫВЫ (скриншоты сторис) ======
+     Скриншоты кладите в assets/images/reviews/. Пока список пуст — блок скрыт. */
+  const REVIEWS = [
+    // { src: 'assets/images/reviews/01.jpg', title: 'Отзыв покупателя' },
+  ];
+
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -77,22 +96,12 @@
   /* ====== Scroll engine: один rAF на всё ====== */
   const root = document.documentElement;
   const parallaxEls = $$('[data-parallax]');
-  const works = $('.works');
-  const track = $('#worksTrack');
-  const worksBar = $('#worksBar');
   const steps = $$('.step');
   const stepNum = $('#stepNum');
   const stepRing = $('.process__ring');
   const navLinks = $$('.nav a');
   const sections = navLinks.map((a) => $(a.getAttribute('href'))).filter(Boolean);
-  let lastY = scrollY, ticking = false, worksDist = 0, horizontal = false, activeStep = 0;
-
-  const measureWorks = () => {
-    horizontal = innerWidth > 860;
-    if (!horizontal) { works.style.removeProperty('--works-h'); return; }
-    worksDist = Math.max(0, track.scrollWidth - innerWidth);
-    works.style.setProperty('--works-h', `${worksDist + innerHeight}px`);
-  };
+  let lastY = scrollY, ticking = false, activeStep = 0;
 
   const onScroll = () => {
     const y = scrollY;
@@ -109,14 +118,6 @@
         if (r.bottom < 0 || r.top > innerHeight) return;
         el.style.setProperty('--py', `${(r.top * parseFloat(el.dataset.parallax)).toFixed(1)}px`);
       });
-    }
-
-    // горизонтальная лента изделий
-    if (horizontal) {
-      const r = works.getBoundingClientRect();
-      const p = clamp(-r.top / (r.height - innerHeight || 1));
-      track.style.setProperty('--x', `${(-p * worksDist).toFixed(1)}px`);
-      worksBar.style.setProperty('--wp', p.toFixed(3));
     }
 
     // этапы работы
@@ -143,16 +144,8 @@
   const requestTick = () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } };
   addEventListener('scroll', requestTick, { passive: true });
   let rT;
-  addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { measureWorks(); onScroll(); }, 120); });
-  addEventListener('load', () => { measureWorks(); onScroll(); });
-  measureWorks(); onScroll();
-
-  // Мобильная лента: прогресс по горизонтальной прокрутке
-  $('.works__viewport').addEventListener('scroll', (e) => {
-    if (horizontal) return;
-    const v = e.currentTarget;
-    worksBar.style.setProperty('--wp', (v.scrollLeft / (v.scrollWidth - v.clientWidth || 1)).toFixed(3));
-  }, { passive: true });
+  addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(onScroll, 120); });
+  onScroll();
 
   /* ====== Hero: параллакс за курсором с инерцией ====== */
   const stage = $('#heroStage');
@@ -198,6 +191,90 @@
     entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
   }, { threshold: 0.2 }) : null;
   $$('.reveal').forEach((el) => (io ? io.observe(el) : el.classList.add('is-in')));
+
+  /* ====== Слайдеры работ и отзывов + лайтбокс ====== */
+  const esc = (t) => String(t).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+  const lightbox = $('#lightbox');
+  const lbImg = $('img', lightbox);
+  const lbCap = $('figcaption', lightbox);
+  let lbList = [], lbIndex = 0;
+  const lbShow = (i) => {
+    lbIndex = (i + lbList.length) % lbList.length;
+    const it = lbList[lbIndex];
+    lbImg.src = it.src; lbImg.alt = it.title || ''; lbCap.textContent = it.title || '';
+  };
+  const lbOpen = (list, i) => { lbList = list; lbShow(i); if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute('open', ''); };
+  $$('[data-dir]', lightbox).forEach((b) => b.addEventListener('click', () => lbShow(lbIndex + +b.dataset.dir)));
+  $('[data-close]', lightbox).addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target.tagName === 'FIGURE') lightbox.close(); });
+  lightbox.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') lbShow(lbIndex + 1); if (e.key === 'ArrowLeft') lbShow(lbIndex - 1); });
+  let touchX = 0;
+  lightbox.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  lightbox.addEventListener('touchend', (e) => { const d = e.changedTouches[0].clientX - touchX; if (Math.abs(d) > 50) lbShow(lbIndex + (d < 0 ? 1 : -1)); });
+
+  const initSlider = (section, list, { order = true } = {}) => {
+    if (!list.length) return;
+    section.hidden = false;
+    const slider = $('.slider', section);
+    const track = $('.slider__track', section);
+    track.innerHTML = list.map((it, i) => `
+      <li class="work">
+        <figure>
+          <button class="work__media" type="button" data-i="${i}" aria-label="Открыть фото: ${esc(it.title || '')}">
+            <img src="${esc(it.src)}" alt="${esc(it.title || '')}" loading="${i < 4 ? 'eager' : 'lazy'}" decoding="async" draggable="false">
+          </button>
+          ${order || it.title ? `<figcaption><b>${esc(it.title || '')}</b>${order ? `<a href="#order" data-product="${esc(it.product || '')}">Хочу такой</a>` : ''}</figcaption>` : ''}
+        </figure>
+      </li>`).join('');
+    const items = $$('.work', track);
+    const btns = $$('.slider__btn', section);
+    const cur = $('.slider__count b', section);
+    $('.slider__count i', section).textContent = list.length;
+    const bar = $('.slider__progress span', section);
+    const step = () => (items[1] ? items[1].offsetLeft - items[0].offsetLeft : slider.clientWidth);
+    const update = () => {
+      const max = slider.scrollWidth - slider.clientWidth;
+      const idx = Math.min(list.length - 1, Math.round(slider.scrollLeft / step()));
+      cur.textContent = idx + 1;
+      bar.style.setProperty('--sp2', max > 0 ? (slider.scrollLeft / max).toFixed(3) : 1);
+      btns[0].disabled = slider.scrollLeft < 4;
+      btns[1].disabled = slider.scrollLeft > max - 4;
+    };
+    btns.forEach((b) => b.addEventListener('click', () => slider.scrollBy({ left: step() * +b.dataset.dir, behavior: reduce ? 'auto' : 'smooth' })));
+    slider.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); slider.scrollBy({ left: step() * (e.key === 'ArrowRight' ? 1 : -1), behavior: 'smooth' }); }
+    });
+    let raf = 0;
+    slider.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); }, { passive: true });
+    addEventListener('resize', update);
+    update();
+
+    // перетаскивание мышью на компьютере
+    let down = false, moved = false, startX = 0, startL = 0;
+    slider.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') return; down = true; moved = false; startX = e.clientX; startL = slider.scrollLeft; });
+    addEventListener('pointermove', (e) => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 6) { moved = true; slider.classList.add('is-dragging'); }
+      if (moved) slider.scrollLeft = startL - dx;
+    });
+    addEventListener('pointerup', () => {
+      if (!down) return; down = false;
+      if (moved) {
+        slider.classList.remove('is-dragging');
+        const target = Math.round(slider.scrollLeft / step()) * step();
+        slider.scrollTo({ left: target, behavior: 'smooth' });
+      }
+    });
+    track.addEventListener('click', (e) => {
+      if (moved) { e.preventDefault(); return; }
+      const b = e.target.closest('.work__media');
+      if (b) lbOpen(list, +b.dataset.i);
+    });
+  };
+  initSlider($('#works'), WORKS);
+  initSlider($('#reviews'), REVIEWS, { order: false });
+  if (REVIEWS.length) $$('[data-reviews-link]').forEach((a) => { a.hidden = false; });
 
   /* ====== Конструктор ремня ====== */
   const form = $('#builderForm');
@@ -281,11 +358,13 @@
   });
 
   // Ссылки «Узнать цену» подставляют изделие в форму заказа
-  $$('[data-product]').forEach((a) => a.addEventListener('click', () => {
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-product]');
+    if (!a) return;
     const sel = $('#orderForm select[name="product"]');
     const opt = [...sel.options].find((o) => o.text === a.dataset.product);
     if (opt) sel.value = opt.value;
-  }));
+  });
 
   /* ====== FAQ: плавное раскрытие ====== */
   $$('.qa').forEach((d) => {
