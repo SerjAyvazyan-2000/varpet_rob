@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Varpet Rob — изделия из кожи ручной работы</title>
-  <meta name="description" content="Ремни, кошельки, картхолдеры и аксессуары из натуральной кожи. Ручной раскрой, седельный шов, полировка торца. Заказ под ваш размер и инициалы.">
+  <title>Varpet Rob — изделия из натуральной кожи ручной работы</title>
+  <meta name="description" content="Портмоне, кошельки, обложки для документов, картхолдеры и обувь из натуральной кожи. Ручной пошив седельным швом. Новокубанск, Армавир, доставка по всей России.">
   <meta name="theme-color" content="#1d130c">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Varpet Rob — кожа ручной работы">
-  <meta property="og:description" content="Ремни, кошельки и аксессуары из натуральной кожи, прошитые вручную.">
-  <meta property="og:image" content="assets/images/belt.svg">
+  <meta property="og:description" content="Портмоне, обложки, картхолдеры и обувь из натуральной кожи. Ручной пошив, доставка по России.">
+  <meta property="og:image" content="assets/images/works/portmone-ryzhee.webp">
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/lora.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/images/master.webp" as="image">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -21,8 +22,11 @@
   <div class="thread" aria-hidden="true">
     <div class="thread__holes"></div>
     <div class="thread__line"></div>
-    <svg class="thread__needle" viewBox="0 0 12 60"><path d="M6 0 L8 46 Q6 60 4 46 Z" fill="url(#needleG)"/><ellipse cx="6" cy="8" rx="1.2" ry="3.4" fill="#1d130c"/><defs><linearGradient id="needleG" x1="0" x2="1"><stop offset="0" stop-color="#8f8b84"/><stop offset=".5" stop-color="#f3efe6"/><stop offset="1" stop-color="#77736c"/></linearGradient></defs></svg>
+    <svg class="thread__needle" viewBox="0 0 12 60"><defs><linearGradient id="needleG" x1="0" x2="1"><stop offset="0" stop-color="#8f8b84"/><stop offset=".5" stop-color="#f3efe6"/><stop offset="1" stop-color="#77736c"/></linearGradient></defs><path d="M6 0 L8 46 Q6 60 4 46 Z" fill="url(#needleG)"/><ellipse cx="6" cy="8" rx="1.2" ry="3.4" fill="#1d130c"/></svg>
   </div>
+
+  <!-- Курсор-подсказка для слайдера -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span>Тяните</span></div>
 
   <header class="header" id="header">
     <a class="logo" href="#top" aria-label="Varpet Rob — на главную">
@@ -31,10 +35,10 @@
     </a>
     <nav class="nav" id="nav" aria-label="Основное меню">
       <a href="#works">Работы</a>
-      <a href="#constructor">Собрать ремень</a>
+      <a href="#constructor">Подобрать</a>
       <a href="#process">Как я шью</a>
-      <a href="#reviews" data-reviews-link hidden>Отзывы</a>
-      <a href="#faq">Уход и сроки</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Доставка</a>
       <a href="#order">Контакты</a>
     </nav>
     <a class="btn btn--thread header__cta" href="#order"><span>Заказать</span></a>
@@ -47,56 +51,86 @@
       <div class="hero__grain" data-parallax="0.15" aria-hidden="true"></div>
       <div class="hero__inner">
         <div class="hero__copy">
-          <p class="hero__kicker">Мастерская кожи ручной работы</p>
+          <p class="hero__kicker">Мастер Роберт. Натуральная кожа, ручная работа</p>
           <h1 class="hero__title">
             <span class="line"><span>Кожа,</span></span>
             <span class="line"><span>прошитая</span></span>
             <span class="line"><span>руками</span></span>
           </h1>
           <svg class="hero__stitch" viewBox="0 0 600 20" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 H600"/></svg>
-          <p class="hero__lead">Ремни, кошельки и аксессуары из натуральной кожи. Режу, шью седельным швом и полирую торец сам — от первого прокола до последнего узла.</p>
+          <p class="hero__lead">Портмоне, обложки, картхолдеры и обувь из натуральной кожи. Крою, шью седельным швом и полирую каждый торец сам. Новокубанск и Армавир, доставка по всей России.</p>
           <div class="hero__actions">
-            <a class="btn btn--solid" href="#constructor"><span>Собрать свой ремень</span></a>
-            <a class="btn btn--ghost" href="#works"><span>Смотреть работы</span></a>
+            <a class="btn btn--solid" href="#works"><span>Смотреть работы</span></a>
+            <a class="btn btn--ghost" href="#order"><span>Обсудить заказ</span></a>
           </div>
         </div>
-        <div class="hero__stage" id="heroStage" aria-hidden="true">
-          <div class="hero__disc" data-depth="0.2"></div>
-          <img class="hero__item hero__item--belt" data-depth="0.5" src="assets/images/belt.svg" alt="" width="400" height="400" fetchpriority="high">
-          <img class="hero__item hero__item--wallet" data-depth="0.9" src="assets/images/wallet.svg" alt="" width="400" height="400">
-          <img class="hero__item hero__item--key" data-depth="1.3" src="assets/images/keyholder.svg" alt="" width="400" height="400">
+
+        <div class="hero__stage" id="heroStage">
+          <figure class="hero__portrait" data-depth="0.35">
+            <img src="assets/images/master.webp" alt="Мастер Роберт, автор изделий Varpet Rob" width="700" height="843" fetchpriority="high">
+            <figcaption>Роберт, мастер</figcaption>
+          </figure>
+          <img class="hero__chip hero__chip--a" data-depth="1" src="assets/images/works/portmone-ryzhee.webp" alt="" width="730" height="912" aria-hidden="true">
+          <img class="hero__chip hero__chip--b" data-depth="1.4" src="assets/images/works/zazhim.webp" alt="" width="731" height="912" aria-hidden="true">
+          <div class="hero__badge" data-depth="0.8" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs><text><textPath href="#circ">РУЧНАЯ РАБОТА • НАТУРАЛЬНАЯ КОЖА • </textPath></text></svg>
+            <span>R</span>
+          </div>
         </div>
       </div>
       <a class="hero__scroll" href="#about" aria-label="Прокрутить вниз"><span></span></a>
     </section>
 
+    <!-- Бегущая строка -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>Портмоне</span><i></i><span>Кошельки</span><i></i><span>Обложки для документов</span><i></i><span>Картхолдеры</span><i></i><span>Зажимы для купюр</span><i></i><span>Футляры для очков</span><i></i><span>Кожаная обувь</span><i></i>
+        <span>Портмоне</span><i></i><span>Кошельки</span><i></i><span>Обложки для документов</span><i></i><span>Картхолдеры</span><i></i><span>Зажимы для купюр</span><i></i><span>Футляры для очков</span><i></i><span>Кожаная обувь</span><i></i>
+      </div>
+    </div>
+
     <!-- ABOUT -->
     <section class="about" id="about">
       <div class="container about__grid">
-        <h2 class="about__title reveal">«Варпет» по-армянски — мастер. Это не бренд, это работа одного человека.</h2>
-        <div class="about__text reveal">
-          <p>Каждое изделие делаю от начала до конца сам: выбираю кожу, крою по лекалу, срезаю и полирую торцы, прокалываю пробойником и прошиваю вощёной нитью двумя иглами.</p>
-          <p>Седельный шов не распускается, даже если одна нить перетрётся. Поэтому ремень служит годами, а кожа со временем только темнеет и становится красивее.</p>
+        <figure class="about__photo" data-reveal="clip">
+          <img src="assets/images/process/kozha-ruki.webp" alt="Руки мастера на куске натуральной кожи" width="730" height="912" loading="lazy" data-inner-parallax>
+        </figure>
+        <div class="about__body">
+          <h2 class="about__title" data-split>Совершенство — это не навык, это отношение.</h2>
+          <div class="about__text" data-reveal>
+            <p>Меня зовут Роберт. Каждое изделие делаю от начала до конца сам: подбираю кожу, режу по своим лекалам, обрабатываю торцы и прошиваю вручную двумя иглами.</p>
+            <p>Седельный шов прочнее машинного: даже если одна нить перетрётся, вторая держит. Поэтому вещь служит годами, а кожа со временем только становится красивее.</p>
+          </div>
+          <ul class="about__facts" data-reveal-group>
+            <li><b>Натуральная кожа</b><span>без кожзама и склеек</span></li>
+            <li><b>Ручной пошив</b><span>седельный шов, вощёная нить</span></li>
+            <li><b>По всей России</b><span>отправляю из Новокубанска и Армавира</span></li>
+          </ul>
         </div>
-        <ul class="about__facts reveal" aria-label="Особенности">
-          <li><b>Натуральная кожа</b><span>растительного и комбинированного дубления</span></li>
-          <li><b>Седельный шов</b><span>вручную, вощёная нить двумя иглами</span></li>
-          <li><b>Под вас</b><span>размер, цвет, нить, тиснение инициалов</span></li>
-        </ul>
       </div>
     </section>
 
-    <!-- WORKS: слайдер работ мастера (наполняется из WORKS в assets/js/main.js) -->
+    <!-- WORKS -->
     <section class="works" id="works" aria-labelledby="worksTitle">
       <div class="container works__head">
         <div>
-          <h2 id="worksTitle" class="h2">Мои работы</h2>
-          <p class="works__hint">Всё, что на фото, сделано мной вручную. Любую вещь можно заказать в своём цвете и размере.</p>
+          <h2 id="worksTitle" class="h2" data-split>Мои работы</h2>
+          <p class="works__hint" data-reveal>Всё на фото сшито мной. Любую вещь повторю в нужном цвете, с вашими инициалами.</p>
         </div>
-        <div class="slider__nav">
+        <div class="slider__nav" data-reveal>
           <button class="slider__btn" type="button" data-dir="-1" aria-label="Предыдущая работа"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <span class="slider__count" aria-live="polite"><b>1</b> / <i>1</i></span>
+          <span class="slider__count" aria-live="polite"><b>01</b> / <i>17</i></span>
           <button class="slider__btn" type="button" data-dir="1" aria-label="Следующая работа"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="container">
+        <div class="filters" role="tablist" aria-label="Категории работ" data-reveal>
+          <button role="tab" class="is-active" aria-selected="true" data-filter="all">Все</button>
+          <button role="tab" aria-selected="false" data-filter="wallet">Портмоне и кошельки</button>
+          <button role="tab" aria-selected="false" data-filter="cover">Обложки</button>
+          <button role="tab" aria-selected="false" data-filter="card">Картхолдеры и зажимы</button>
+          <button role="tab" aria-selected="false" data-filter="shoes">Обувь</button>
+          <button role="tab" aria-selected="false" data-filter="acc">Аксессуары</button>
         </div>
       </div>
       <div class="slider" id="worksSlider" tabindex="0" aria-roledescription="слайдер" aria-label="Работы мастера">
@@ -108,96 +142,73 @@
     <!-- CONSTRUCTOR -->
     <section class="builder" id="constructor" aria-labelledby="builderTitle">
       <div class="container">
-        <h2 id="builderTitle" class="h2">Соберите свой ремень</h2>
-        <p class="builder__lead">Выберите кожу, ширину, пряжку и нить — превью меняется сразу. Готовую конфигурацию отправьте мне в один клик.</p>
+        <h2 id="builderTitle" class="h2" data-split>Подберите своё изделие</h2>
+        <p class="builder__lead" data-reveal>Выберите вещь, цвет кожи и нить — справа появится похожая работа мастера. Готовый выбор отправьте в один клик.</p>
 
         <div class="builder__grid">
-          <figure class="builder__preview">
-            <svg id="beltSvg" viewBox="14 36 872 148" role="img" aria-label="Превью ремня">
-              <defs>
-                <linearGradient id="buckleG" x1="0" y1="0" x2="1" y2="1">
-                  <stop id="bk1" offset="0" stop-color="#e9e5dc"/><stop id="bk2" offset=".5" stop-color="#9a978f"/><stop id="bk3" offset="1" stop-color="#f6f3ec"/>
-                </linearGradient>
-                <linearGradient id="strapShade" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/>
-                </linearGradient>
-                <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .22 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
-              </defs>
-              <g id="beltGroup">
-                <rect id="strap" x="40" y="80" width="820" height="60" rx="6"/>
-                <rect id="strapShadeR" x="40" y="80" width="820" height="60" rx="6" fill="url(#strapShade)"/>
-                <rect id="strapGrain" x="40" y="80" width="820" height="60" rx="6" fill="#000" filter="url(#grain)"/>
-                <rect id="stitch" x="52" y="88" width="796" height="44" rx="3" fill="none" stroke-width="2.4" stroke-dasharray="9 7"/>
-                <g id="holes"></g>
-                <text id="initials" x="440" y="118" text-anchor="middle"></text>
-                <g id="buckle">
-                  <rect id="buckleFrame" x="30" y="62" width="74" height="96" rx="10" fill="none" stroke="url(#buckleG)" stroke-width="12"/>
-                  <rect id="bucklePin" x="62" y="64" width="9" height="92" rx="4" fill="url(#buckleG)"/>
-                </g>
-                <rect id="keeper" x="128" y="72" width="22" height="76" rx="4"/>
-              </g>
-            </svg>
-            <figcaption id="beltCaption" aria-live="polite"></figcaption>
+          <figure class="builder__preview" data-reveal="clip">
+            <div class="builder__frame">
+              <img id="pvA" class="is-on" alt="" width="730" height="912">
+              <img id="pvB" alt="" width="730" height="912">
+            </div>
+            <figcaption>
+              <b id="pvTitle">Портмоне</b>
+              <span id="pvNote">Пример работы в этом цвете</span>
+            </figcaption>
           </figure>
 
           <form class="builder__form" id="builderForm" novalidate>
             <fieldset>
-              <legend>Кожа</legend>
+              <legend>Изделие</legend>
+              <div class="chips">
+                <label><input type="radio" name="item" value="Портмоне" checked><span>Портмоне</span></label>
+                <label><input type="radio" name="item" value="Кошелёк"><span>Кошелёк</span></label>
+                <label><input type="radio" name="item" value="Обложка для документов"><span>Обложка</span></label>
+                <label><input type="radio" name="item" value="Картхолдер"><span>Картхолдер</span></label>
+                <label><input type="radio" name="item" value="Зажим для купюр"><span>Зажим</span></label>
+                <label><input type="radio" name="item" value="Футляр для очков"><span>Футляр</span></label>
+                <label><input type="radio" name="item" value="Шлёпанцы"><span>Шлёпанцы</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Цвет кожи</legend>
               <div class="swatches" role="radiogroup">
-                <label class="swatch"><input type="radio" name="leather" value="Натуральный (вег-тан)" data-color="#c99a62" checked><span style="--c:#c99a62"></span><em>Натуральный</em></label>
-                <label class="swatch"><input type="radio" name="leather" value="Коньяк" data-color="#8a4a1e"><span style="--c:#8a4a1e"></span><em>Коньяк</em></label>
-                <label class="swatch"><input type="radio" name="leather" value="Тёмный шоколад" data-color="#3d2216"><span style="--c:#3d2216"></span><em>Шоколад</em></label>
-                <label class="swatch"><input type="radio" name="leather" value="Бордо" data-color="#6e1f1a"><span style="--c:#6e1f1a"></span><em>Бордо</em></label>
-                <label class="swatch"><input type="radio" name="leather" value="Чёрный" data-color="#1b1715"><span style="--c:#1b1715"></span><em>Чёрный</em></label>
-                <label class="swatch"><input type="radio" name="leather" value="Оливковый" data-color="#4a5a3a"><span style="--c:#4a5a3a"></span><em>Олива</em></label>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Ширина</legend>
-              <div class="seg">
-                <label><input type="radio" name="width" value="30" checked><span>30 мм</span></label>
-                <label><input type="radio" name="width" value="35"><span>35 мм</span></label>
-                <label><input type="radio" name="width" value="40"><span>40 мм</span></label>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Пряжка</legend>
-              <div class="seg">
-                <label><input type="radio" name="buckle" value="Сталь" checked><span>Сталь</span></label>
-                <label><input type="radio" name="buckle" value="Латунь"><span>Латунь</span></label>
-                <label><input type="radio" name="buckle" value="Чёрная"><span>Чёрная</span></label>
+                <label class="swatch"><input type="radio" name="color" value="Рыжий" data-key="ryzhiy" checked><span style="--c:#a4521f"></span><em>Рыжий</em></label>
+                <label class="swatch"><input type="radio" name="color" value="Бордо" data-key="bordo"><span style="--c:#6e1f1a"></span><em>Бордо</em></label>
+                <label class="swatch"><input type="radio" name="color" value="Шоколад" data-key="shokolad"><span style="--c:#3d2216"></span><em>Шоколад</em></label>
+                <label class="swatch"><input type="radio" name="color" value="Чёрный" data-key="black"><span style="--c:#17130f"></span><em>Чёрный</em></label>
               </div>
             </fieldset>
 
             <fieldset>
               <legend>Нить</legend>
-              <div class="swatches swatches--small" role="radiogroup">
-                <label class="swatch"><input type="radio" name="thread" value="Жёлтая" data-color="#f2d16b" checked><span style="--c:#f2d16b"></span><em>Жёлтая</em></label>
-                <label class="swatch"><input type="radio" name="thread" value="Белая" data-color="#f1ece2"><span style="--c:#f1ece2"></span><em>Белая</em></label>
-                <label class="swatch"><input type="radio" name="thread" value="Тон в тон" data-color="tone"><span style="--c:linear-gradient(135deg,#8a4a1e 50%,#3d2216 50%)"></span><em>Тон в тон</em></label>
-                <label class="swatch"><input type="radio" name="thread" value="Красная" data-color="#b8322a"><span style="--c:#b8322a"></span><em>Красная</em></label>
+              <div class="seg">
+                <label><input type="radio" name="thread" value="В тон коже" checked><span>В тон</span></label>
+                <label><input type="radio" name="thread" value="Контрастная светлая"><span>Светлая</span></label>
+                <label><input type="radio" name="thread" value="Красная"><span>Красная</span></label>
               </div>
             </fieldset>
 
             <div class="builder__row">
-              <label class="field">
+              <label class="field" id="fInitials">
                 <span>Инициалы (тиснение)</span>
-                <input type="text" name="initials" maxlength="3" placeholder="Например, R.A." autocomplete="off">
+                <input type="text" name="initials" maxlength="4" placeholder="Например, Р.А." autocomplete="off">
               </label>
-              <label class="field">
-                <span>Обхват талии, см</span>
-                <input type="number" name="waist" min="60" max="160" inputmode="numeric" placeholder="90">
+              <label class="field" id="fSize" hidden>
+                <span>Размер обуви</span>
+                <input type="number" name="size" min="34" max="48" inputmode="numeric" placeholder="42">
               </label>
             </div>
 
+            <div class="builder__summary" id="summary" aria-live="polite"></div>
+
             <div class="builder__send">
               <a class="btn btn--solid" id="sendWa" href="#" target="_blank" rel="noopener"><span>Отправить в WhatsApp</span></a>
-              <a class="btn btn--ghost" id="sendTg" href="#" target="_blank" rel="noopener"><span>Telegram</span></a>
+              <a class="btn btn--ghost" id="sendIg" href="https://ig.me/m/varpet_rob" target="_blank" rel="noopener"><span>В Instagram</span></a>
               <button class="btn btn--ghost" type="button" id="copyCfg"><span>Скопировать</span></button>
             </div>
-            <p class="builder__note">Ничего не сохраняется на сайте: текст заказа просто открывается в выбранном мессенджере.</p>
+            <p class="builder__note">Ничего не сохраняется на сайте: текст просто открывается в мессенджере.</p>
           </form>
         </div>
       </div>
@@ -207,86 +218,100 @@
     <section class="process" id="process" aria-labelledby="processTitle">
       <div class="container process__grid">
         <div class="process__sticky">
-          <h2 id="processTitle" class="h2">Как рождается вещь</h2>
-          <div class="process__counter" aria-hidden="true"><span id="stepNum">1</span><small>/5</small></div>
-          <svg class="process__ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54"/><circle id="stepRing" cx="60" cy="60" r="54"/></svg>
+          <h2 id="processTitle" class="h2" data-split>Как рождается вещь</h2>
+          <div class="process__media" aria-hidden="true">
+            <img src="assets/images/process/kozha.webp" alt="" class="is-on" loading="lazy" width="809" height="912">
+            <img src="assets/images/process/lekalo.webp" alt="" loading="lazy" width="716" height="912">
+            <img src="assets/images/process/raskroy.webp" alt="" loading="lazy" width="730" height="912">
+            <img src="assets/images/process/nit.webp" alt="" loading="lazy" width="513" height="912">
+            <img src="assets/images/works/zazhim-instrumenty.webp" alt="" loading="lazy" width="730" height="912">
+            <div class="process__counter"><span id="stepNum">1</span><small>/5</small></div>
+          </div>
         </div>
         <ol class="process__steps">
           <li class="step" data-step="1">
             <h3>Выбор кожи</h3>
-            <p>Беру плотную кожу растительного дубления для ремней и мягкую — для кошельков. Проверяю каждый кусок на просвет, обхожу шрамы и жилы.</p>
+            <p>Беру плотную натуральную кожу: проверяю каждый кусок на ощупь и на просвет, обхожу шрамы и неровности.</p>
           </li>
           <li class="step" data-step="2">
-            <h3>Раскрой по лекалу</h3>
-            <p>Режу вручную по своим лекалам. Для ремня — полосу по всей длине шкуры, без склеек и наращиваний.</p>
+            <h3>Лекала и разметка</h3>
+            <p>Каждая модель — по моим лекалам. Размечаю шаг шва пробойником, чтобы стежки легли ровно.</p>
           </li>
           <li class="step" data-step="3">
-            <h3>Торцы</h3>
-            <p>Снимаю фаску, шлифую, окрашиваю и полирую торец до гладкого блеска. Так он не лохматится и не впитывает влагу.</p>
+            <h3>Раскрой</h3>
+            <p>Режу вручную, острым ножом. Детали подгоняю до миллиметра — от этого зависит, как изделие закроется и прослужит.</p>
           </li>
           <li class="step" data-step="4">
             <h3>Седельный шов</h3>
-            <p>Прокалываю шаг пробойником и прошиваю двумя иглами вощёной нитью. Медленно, зато шов держится, даже если одна нить перетрётся.</p>
+            <p>Шью двумя иглами вощёной нитью. Медленно, зато такой шов не распускается, даже если одна нить перетрётся.</p>
           </li>
           <li class="step" data-step="5">
-            <h3>Воск и финиш</h3>
-            <p>Покрываю изделие воском, ставлю фурнитуру, по желанию — тиснение. Проверяю каждый стежок и отдаю вам.</p>
+            <h3>Торцы и финиш</h3>
+            <p>Шлифую, окрашиваю и полирую торцы, ставлю фурнитуру, по желанию делаю тиснение. Проверяю каждый стежок — и отправляю вам.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- QUOTE с параллаксом -->
+    <!-- QUOTE -->
     <section class="quote" aria-label="Принцип мастерской">
-      <div class="quote__bg" data-parallax="-0.25" aria-hidden="true"></div>
+      <div class="quote__bg" data-parallax="-0.2" aria-hidden="true"><img src="assets/images/process/kozha-rulon.webp" alt="" loading="lazy" width="636" height="638"></div>
       <blockquote class="container">
-        <p>Хорошая кожа стареет как хорошее вино: через пару лет ваш ремень будет красивее, чем в день покупки.</p>
+        <p data-split>Натуральная кожа долговечна и со временем становится только красивее.</p>
+        <footer data-reveal>— Роберт, @varpet_rob</footer>
       </blockquote>
     </section>
 
-    <!-- REVIEWS: отзывы клиентов из сторис (наполняется из REVIEWS в assets/js/main.js) -->
-    <section class="reviews" id="reviews" aria-labelledby="reviewsTitle" hidden>
-      <div class="container works__head">
-        <div>
-          <h2 id="reviewsTitle" class="h2">Отзывы клиентов</h2>
-          <p class="works__hint">Скриншоты сообщений, которые присылают покупатели. Больше — в сторис @varpet_rob.</p>
+    <!-- REVIEWS -->
+    <section class="reviews" id="reviews" aria-labelledby="reviewsTitle">
+      <div class="container reviews__grid">
+        <div class="reviews__phone" data-reveal="scale">
+          <div class="phone">
+            <div class="phone__bar"><span class="phone__dot"></span><b>О Т З Ы В Ы</b></div>
+            <img src="assets/images/reviews/review-1.webp" alt="Скриншот отзывов клиентов из сторис Instagram" width="475" height="843" loading="lazy">
+          </div>
         </div>
-        <div class="slider__nav">
-          <button class="slider__btn" type="button" data-dir="-1" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <span class="slider__count" aria-live="polite"><b>1</b> / <i>1</i></span>
-          <button class="slider__btn" type="button" data-dir="1" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="reviews__body">
+          <h2 id="reviewsTitle" class="h2" data-split>Что говорят покупатели</h2>
+          <div class="reviews__list" data-reveal-group>
+            <blockquote class="review">
+              <p>Хочу поблагодарить вас за качественную работу! Подарила портмоне своему сыну на день рождения. Пользуется с удовольствием!</p>
+              <footer><span class="review__tag">Портмоне</span> отзыв из WhatsApp</footer>
+            </blockquote>
+            <blockquote class="review">
+              <p>Заказывала у вас шлёпанцы. Это супер! Моему мужу нравится!</p>
+              <footer><span class="review__tag">Шлёпанцы</span> отзыв из WhatsApp</footer>
+            </blockquote>
+          </div>
+          <a class="btn btn--ghost" href="https://www.instagram.com/varpet_rob" target="_blank" rel="noopener" data-reveal><span>Все отзывы в сторис</span></a>
         </div>
       </div>
-      <div class="slider slider--stories" id="reviewsSlider" tabindex="0" aria-roledescription="слайдер" aria-label="Отзывы клиентов">
-        <ul class="slider__track" id="reviewsTrack"></ul>
-      </div>
-      <div class="container"><div class="slider__progress" aria-hidden="true"><span></span></div></div>
     </section>
 
     <!-- FAQ -->
     <section class="faq" id="faq" aria-labelledby="faqTitle">
       <div class="container faq__grid">
-        <h2 id="faqTitle" class="h2">Уход, сроки, доставка</h2>
-        <div class="faq__list">
+        <h2 id="faqTitle" class="h2" data-split>Сроки, доставка, уход</h2>
+        <div class="faq__list" data-reveal-group>
+          <details class="qa">
+            <summary>Вы отправляете в другие города?</summary>
+            <div class="qa__body"><div><p>Да, доставка по всем городам России. Способ и стоимость доставки подберём под ваш город в переписке. В Новокубанске и Армавире можно забрать лично.</p></div></div>
+          </details>
           <details class="qa">
             <summary>Сколько времени занимает заказ?</summary>
-            <div class="qa__body"><div><p>Ремень — обычно несколько дней, кошелёк или сумка — дольше, в зависимости от сложности. Точный срок назову, когда обсудим детали.</p></div></div>
+            <div class="qa__body"><div><p>Зависит от изделия и загрузки: картхолдер или зажим — быстрее, портмоне и обувь — дольше. Точный срок назову, когда обсудим детали.</p></div></div>
           </details>
           <details class="qa">
-            <summary>Как правильно снять мерку для ремня?</summary>
-            <div class="qa__body"><div><p>Измерьте ремень, который вы уже носите: от сгиба у пряжки до отверстия, которым пользуетесь чаще всего. Или обхват по брюкам в месте, где носите ремень, — укажите это в конструкторе.</p></div></div>
+            <summary>Можно сделать по моему эскизу или с инициалами?</summary>
+            <div class="qa__body"><div><p>Да. Пришлите фото или рисунок — обсудим кожу, цвет нити, размеры и тиснение до начала работы.</p></div></div>
           </details>
           <details class="qa">
-            <summary>Как ухаживать за кожей?</summary>
-            <div class="qa__body"><div><p>Раз в несколько месяцев протирайте изделие сухой тканью и наносите тонкий слой воска или крема для кожи. Если промокло — сушите при комнатной температуре, не на батарее.</p></div></div>
+            <summary>Как подобрать размер шлёпанцев?</summary>
+            <div class="qa__body"><div><p>Напишите размер, который носите, и длину стопы в сантиметрах — встаньте на лист бумаги и измерьте от пятки до большого пальца.</p></div></div>
           </details>
           <details class="qa">
-            <summary>Можно ли сделать вещь по моему эскизу?</summary>
-            <div class="qa__body"><div><p>Да. Пришлите фото или рисунок в мессенджер — обсудим материал, размеры и цену до начала работы.</p></div></div>
-          </details>
-          <details class="qa">
-            <summary>Есть ли доставка?</summary>
-            <div class="qa__body"><div><p>Да, отправляю готовые изделия. Способ и стоимость доставки зависят от вашего города — уточним в переписке.</p></div></div>
+            <summary>Как ухаживать за кожаными изделиями?</summary>
+            <div class="qa__body"><div><p>Протирайте сухой мягкой тканью, раз в несколько месяцев наносите тонкий слой крема или воска для кожи. Если изделие намокло — сушите при комнатной температуре, вдали от батареи.</p></div></div>
           </details>
         </div>
       </div>
@@ -296,17 +321,17 @@
     <section class="order" id="order" aria-labelledby="orderTitle">
       <div class="container order__grid">
         <div class="order__info">
-          <h2 id="orderTitle" class="h2">Обсудим вашу вещь</h2>
-          <p>Напишите, что хотите заказать, — отвечу, подскажу кожу и назову цену и срок.</p>
-          <ul class="contacts">
-            <li><span>Instagram</span><a href="https://www.instagram.com/varpet_rob" target="_blank" rel="noopener">@varpet_rob</a></li>
+          <h2 id="orderTitle" class="h2" data-split>Обсудим вашу вещь</h2>
+          <p data-reveal>Напишите, что хотите заказать, — отвечу, подскажу кожу и назову цену и срок.</p>
+          <ul class="contacts" data-reveal-group>
             <li><span>Телефон</span><a data-contact="phone" href="#">—</a></li>
             <li><span>WhatsApp</span><a data-contact="whatsapp" href="#" target="_blank" rel="noopener">Написать</a></li>
-            <li><span>Telegram</span><a data-contact="telegram" href="#" target="_blank" rel="noopener">Написать</a></li>
+            <li><span>Instagram</span><a href="https://www.instagram.com/varpet_rob" target="_blank" rel="noopener">@varpet_rob</a></li>
+            <li><span>Город</span><b>Новокубанск, Армавир</b></li>
           </ul>
         </div>
 
-        <form class="order__form" id="orderForm" novalidate>
+        <form class="order__form" id="orderForm" novalidate data-reveal>
           <label class="field">
             <span>Как к вам обращаться</span>
             <input type="text" name="name" required autocomplete="name" maxlength="60">
@@ -314,13 +339,13 @@
           </label>
           <label class="field">
             <span>Телефон</span>
-            <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="+374 __ ___ ___" maxlength="20">
+            <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="+7 ___ ___-__-__" maxlength="20">
             <em class="field__err">Укажите телефон, чтобы я мог ответить</em>
           </label>
           <label class="field">
             <span>Что хотите заказать</span>
             <select name="product">
-              <option>Ремень</option><option>Кошелёк</option><option>Картхолдер</option><option>Брелок</option><option>Ремешок для часов</option><option>Сумка / чехол</option><option>Другое</option>
+              <option>Портмоне</option><option>Кошелёк</option><option>Обложка для документов</option><option>Картхолдер</option><option>Зажим для купюр</option><option>Футляр для очков</option><option>Шлёпанцы</option><option>Другое</option>
             </select>
           </label>
           <label class="field">
@@ -342,7 +367,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <a class="logo" href="#top"><span class="logo__mark" aria-hidden="true">R</span><span class="logo__text">Varpet Rob</span></a>
-      <p>© <span id="year"></span> Varpet Rob. Изделия из натуральной кожи ручной работы.</p>
+      <p>© <span id="year"></span> Varpet Rob. Изделия из натуральной кожи ручной работы. Новокубанск, Армавир.</p>
       <div class="footer__links">
         <button type="button" class="link" data-open="privacy">Политика конфиденциальности</button>
         <button type="button" class="link" id="cookieSettings">Настройки cookie</button>
@@ -353,10 +378,10 @@
   <!-- COOKIE BANNER -->
   <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Использование cookie" hidden>
     <div class="cookie__text">
-      <p><b>Про cookie и хранилище браузера.</b> Сайт использует только необходимое хранилище, чтобы запомнить ваш выбор. Аналитику включаем только с вашего согласия. <button type="button" class="link" data-open="privacy">Подробнее</button></p>
+      <p><b>Про cookie.</b> Сайт использует только необходимое хранилище браузера, чтобы запомнить ваш выбор. Аналитика включается только с вашего согласия. <button type="button" class="link" data-open="privacy">Подробнее</button></p>
       <div class="cookie__prefs" id="cookiePrefs" hidden>
         <label class="toggle"><input type="checkbox" checked disabled><span></span>Необходимые — всегда включены</label>
-        <label class="toggle"><input type="checkbox" id="ckAnalytics"><span></span>Аналитика — помогает понять, что людям интересно</label>
+        <label class="toggle"><input type="checkbox" id="ckAnalytics"><span></span>Аналитика — помогает понять, что интересно посетителям</label>
       </div>
     </div>
     <div class="cookie__actions">
@@ -371,25 +396,26 @@
     <div class="modal__inner">
       <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
       <h2 id="privacyTitle">Политика конфиденциальности</h2>
-      <p class="modal__date">Редакция от <span id="policyDate">12.11.2026</span></p>
-      <h3>1. Кто обрабатывает данные</h3>
-      <p>Оператор персональных данных — мастер, работающий под именем Varpet Rob (далее — «Мастер»). Связаться по вопросам данных можно через контакты, указанные на сайте.</p>
-      <h3>2. Какие данные мы получаем</h3>
-      <p>Только те, которые вы сами указываете в форме или конструкторе: имя, телефон, описание заказа. Сайт не хранит эти данные на сервере — после нажатия кнопки они передаются в выбранный вами мессенджер (WhatsApp или Telegram), и дальнейшая переписка идёт там.</p>
-      <h3>3. Зачем</h3>
-      <p>Чтобы ответить на заявку, согласовать заказ, изготовить и передать изделие. Данные не продаются и не передаются третьим лицам, кроме служб доставки при отправке заказа.</p>
+      <p class="modal__date">Редакция от 12.11.2026</p>
+      <h3>1. Оператор</h3>
+      <p>Оператор персональных данных — мастер Роберт, мастерская изделий из кожи Varpet Rob (Новокубанск, Армавир). Связь по вопросам персональных данных: телефон и мессенджеры из раздела «Контакты».</p>
+      <h3>2. Какие данные обрабатываются</h3>
+      <p>Только те, что вы сами указываете в форме или в подборе изделия: имя, телефон, описание заказа, размер. Сайт не хранит эти данные на сервере: после нажатия кнопки текст открывается в выбранном вами мессенджере (WhatsApp или Instagram), и переписка идёт там.</p>
+      <h3>3. Цели обработки</h3>
+      <p>Ответ на заявку, согласование, изготовление и доставка заказа. Данные не продаются и не передаются третьим лицам, кроме служб доставки в объёме, нужном для отправки.</p>
       <h3>4. Cookie и хранилище браузера</h3>
-      <p>Сайт сохраняет в вашем браузере (localStorage) только ваш выбор по cookie. Аналитические сервисы подключаются лишь после вашего явного согласия, и вы можете отозвать его в любой момент через «Настройки cookie» внизу страницы. Шрифты и изображения загружаются с этого же сайта, без сторонних сервисов.</p>
+      <p>Сайт сохраняет в вашем браузере (localStorage) только ваш выбор по cookie. Аналитические сервисы подключаются лишь после вашего согласия; отозвать его можно в любой момент через «Настройки cookie» внизу страницы. Шрифты и изображения загружаются с этого же сайта, без сторонних сервисов.</p>
       <h3>5. Сроки хранения</h3>
-      <p>Переписка по заказу хранится, пока это нужно для исполнения заказа и гарантийных вопросов, после чего удаляется по вашему запросу.</p>
+      <p>Данные хранятся, пока это нужно для исполнения заказа и гарантийных вопросов, и удаляются по вашему запросу.</p>
       <h3>6. Ваши права</h3>
-      <p>Вы вправе узнать, какие данные о вас есть, потребовать их исправления или удаления и отозвать согласие. Для этого напишите Мастеру любым способом из раздела «Контакты».</p>
+      <p>Вы вправе узнать, какие ваши данные обрабатываются, потребовать их уточнения или удаления и отозвать согласие, написав мастеру любым способом из раздела «Контакты».</p>
       <h3>7. Правовая основа</h3>
-      <p>Обработка ведётся с вашего согласия в соответствии с Законом Республики Армения «О защите персональных данных», а для посетителей из других стран — с учётом применимого законодательства (в том числе Федерального закона РФ № 152-ФЗ и GDPR).</p>
+      <p>Обработка ведётся с вашего согласия в соответствии с Федеральным законом РФ от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
       <button class="btn btn--solid" type="button" data-close><span>Понятно</span></button>
     </div>
   </dialog>
 
+  <!-- LIGHTBOX -->
   <dialog class="lightbox" id="lightbox" aria-label="Просмотр фото">
     <button class="lightbox__close" type="button" data-close aria-label="Закрыть">×</button>
     <button class="lightbox__arrow lightbox__arrow--prev" type="button" data-dir="-1" aria-label="Предыдущее фото"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
